@@ -1,0 +1,75 @@
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <clr-icon shape="analytics"></clr-icon>
+        <span class="title">OSCON Workshop - Realtime Twitter Keyword Dashboard</span>
+      </a>
+    </div>
+    <app-term></app-term>
+  </header>
+  <div class="content-container" *ngIf="!tweets?.length">
+    <div class="content-area">
+      <div class="row">
+        <div class="col-xs-4 offset-xs-4">
+          <div class="spinner-container" *ngIf="loading">
+            <div class="spinner">Loading...</div>
+          </div>
+          <div class="card" *ngIf="!loading">
+            <div class="card-header">Welcome!</div>
+            <div class="card-block">Wait for a stream to begin with realtime analysis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-container" *ngIf="tweets?.length && aggregates?.languages?.length">
+    <div class="content-area">
+      <clr-tabs>
+        <clr-tab-link>Stats</clr-tab-link>
+        <clr-tab-link>Tweets by Time</clr-tab-link>
+        <clr-tab-link>Tweets by Language</clr-tab-link>
+        <clr-tab-link>Top Hashtags</clr-tab-link>
+        <clr-tab-link>Top Links</clr-tab-link>
+
+        <clr-tab-content>
+          <header class="header header-1 chart-header">
+            <div class="branding"><span class="title">Stream Statistics</span></div>
+          </header>
+          <app-stats [stats]="aggregates?.stats" *ngIf="aggregates?.stats"></app-stats>
+        </clr-tab-content>
+
+        <clr-tab-content>
+          <header class="header header-1 chart-header">
+            <div class="branding"><span class="title">Tweets by Time</span></div>
+          </header>
+          <app-time [time]="aggregates?.time" *ngIf="aggregates?.time"></app-time>
+        </clr-tab-content>
+
+        <clr-tab-content>
+          <header class="header header-1 chart-header">
+            <div class="branding"><span class="title">Tweets by Language</span></div>
+          </header>
+          <app-languages [languages]="aggregates?.languages" *ngIf="aggregates?.languages"></app-languages>
+        </clr-tab-content>
+
+        <clr-tab-content>
+          <header class="header header-1 chart-header">
+            <div class="branding"><span class="title">Top Hashtags</span></div>
+          </header>
+          <app-hashtags [hashtags]="hashtags" *ngIf="hashtags"></app-hashtags>
+        </clr-tab-content>
+
+        <clr-tab-content>
+          <header class="header header-1 chart-header">
+            <div class="branding"><span class="title">Top Links</span></div>
+          </header>
+          <app-links [links]="links" *ngIf="links"></app-links>
+        </clr-tab-content>
+      </clr-tabs>
+    </div>
+    <nav class="sidenav">
+      <app-tweets *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweets>
+    </nav>
+  </div>
+</div>

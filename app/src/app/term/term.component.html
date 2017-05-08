@@ -1,0 +1,6 @@
+<form class="search">
+  <label for="term">
+    <input id="term" name="term" type="text" placeholder="Provide term to profile" [(ngModel)]="term" (keyup)="onKeyUp($event)">
+  </label>
+  <button class="btn btn-primary" (click)="startTalking()">Talk</button>
+</form>

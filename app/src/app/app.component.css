@@ -1,0 +1,12 @@
+:host .sidenav {
+  padding: 0 10px;
+  overflow-y: scroll;
+  min-width: 350px;
+  max-width: 450px;
+}
+.chart-header {
+  margin: 20px 0;
+}
+.spinner-container {
+  text-align: center;
+}
